@@ -6,7 +6,10 @@ import math
 face_cascade = cv2.CascadeClassifier("haarcascade_frontalface_default.xml")
 
 # Start webcam
-cap = cv2.VideoCapture(0)
+cap = cv2.VideoCapture(0, cv2.CAP_DSHOW)
+if not cap.isOpened():
+    print("Error: Cannot access camera")
+    exit()
 
 # Set window
 cv2.namedWindow("Personal Space Detector", cv2.WINDOW_NORMAL)
@@ -51,7 +54,7 @@ while True:
             for j in range(i + 1, len(centers)):
                 dist = calculate_distance(centers[i], centers[j])
 
-                if dist < 150:
+                if dist < 250:
                     status = "Too Close!"
                     cv2.line(frame, centers[i], centers[j], (0, 0, 255), 2)
                 else:
