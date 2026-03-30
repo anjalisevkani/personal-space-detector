@@ -33,6 +33,10 @@ while True:
             if dist < 100:  # your threshold
                 cv2.putText(frame, "Too Close!", (50,50),
                         cv2.FONT_HERSHEY_SIMPLEX, 1, (0,0,255), 2)
+                
+    cv2.line(frame, centers[i], centers[j], (0,0,255), 2)
+    cv2.putText(frame, str(int(dist)), centers[i],
+            cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255,255,255), 1)
 
 
 cap.release()
