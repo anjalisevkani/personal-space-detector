@@ -2,16 +2,16 @@ import cv2
 import numpy as np
 import math
 
-# Load face detection model
+# Loading the face detection model
 face_cascade = cv2.CascadeClassifier("haarcascade_frontalface_default.xml")
 
-# Start webcam
+# For opening the webcam
 cap = cv2.VideoCapture(0, cv2.CAP_DSHOW)
 if not cap.isOpened():
     print("Error: Cannot access camera")
     exit()
 
-# Set window
+# Setting the window
 cv2.namedWindow("Personal Space Detector", cv2.WINDOW_NORMAL)
 cv2.resizeWindow("Personal Space Detector", 640, 480)
 
@@ -28,41 +28,41 @@ while True:
     frame = cv2.resize(frame, (640, 480))
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 
-    # Detect faces
+    # Detecting faces
     faces = face_cascade.detectMultiScale(
         gray,
         scaleFactor=1.3,
         minNeighbors=5
     )
 
-    centers = []
+    face_centers = []
 
-    # Draw rectangles and find centers
+    # First drawing the rectangles and then finding centres
     for (x, y, w, h) in faces:
         cx = int(x + w / 2)
         cy = int(y + h / 2)
-        centers.append((cx, cy))
+        face_centers.append((cx, cy))
 
         cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 255, 0), 2)
         cv2.circle(frame, (cx, cy), 5, (0, 0, 255), -1)
 
-    # Check distance
+    # Checking the distance between the faces
     status = "Safe Distance"
 
-    if len(centers) >= 2:
-        for i in range(len(centers)):
-            for j in range(i + 1, len(centers)):
-                dist = calculate_distance(centers[i], centers[j])
+    if len(face_centers) >= 2:
+        for i in range(len(face_centers)):
+            for j in range(i + 1, len(face_centers)):
+                distance_value = calculate_distance(face_centers[i], face_centers[j])
 
-                if dist < 250:
+                if distance_value < 250:
                     status = "Too Close!"
-                    cv2.line(frame, centers[i], centers[j], (0, 0, 255), 2)
+                    cv2.line(frame, face_centers[i], face_centers[j], (0, 0, 255), 2)
                 else:
-                    cv2.line(frame, centers[i], centers[j], (0, 255, 0), 2)
+                    cv2.line(frame, face_centers[i], face_centers[j], (0, 255, 0), 2)
     else:
         status = "Only one person"
 
-    # Display status
+    # Displaying the status
     color = (0, 255, 0) if status == "Safe Distance" else (0, 0, 255)
 
     cv2.putText(frame, status,
