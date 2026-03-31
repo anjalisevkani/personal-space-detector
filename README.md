@@ -53,19 +53,19 @@ Works on Windows / Linux / Mac
 
 ## How to run
 
-Clone the repo first:
+#Clone the repo first:
 
-git clone https://github.com/your-username/your-repo-name
+git clone https://github.com/anjalisevkani/personal-space-detector
 
-Go inside the folder:
+#Go inside the folder:
 
 cd personal-space-detector
 
-Create virtual environment:
+#Create virtual environment:
 
 python -m venv venv
 
-Activate it:
+#Activate it:
 
 Windows:
 venv\Scripts\activate
@@ -73,14 +73,14 @@ venv\Scripts\activate
 Mac/Linux:
 source venv/bin/activate
 
-Install dependencies:
+#Install dependencies:
 
 pip install opencv-python numpy
 
-Make sure this file is present:
+#Make sure this file is present:
 haarcascade_frontalface_default.xml
 
-Run the program:
+#Run the program:
 
 python main.py
 
@@ -119,7 +119,7 @@ I've tested this mostly with my laptop camera, so this may not work on other dev
 
 ## Future improvements
 
-Better models, e.g., YOLO
-Convert pixel distance to real distance
-Add sound alert
-Handle more people (not tested yet)
+-Better models, e.g., YOLO
+-Convert pixel distance to real distance
+-Add sound alert
+-Handle more people (not tested yet)
