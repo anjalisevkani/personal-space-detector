@@ -119,7 +119,7 @@ I've tested this mostly with my laptop camera, so this may not work on other dev
 
 ## Future improvements
 
--Better models, e.g., YOLO
--Convert pixel distance to real distance
--Add sound alert
--Handle more people (not tested yet)
+- Better models, e.g., YOLO  
+- Convert pixel distance to real distance  
+- Add sound alert  
+- Handle more people (not tested yet)
